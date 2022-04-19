@@ -1,0 +1,13 @@
+show
+filter_less_than_age
+print_ascending
+show
+remove_head
+update 2
+remove_by_id 8
+max_by_description
+save
+clear
+show
+f
+execute_script C:\Users\frodo\IdeaProjects\copyyyyy\src\main\java\helpers\text.txt
