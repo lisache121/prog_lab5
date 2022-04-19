@@ -41,6 +41,8 @@ public class AddIfMaxCommand extends AbstractCommand{
             else{
                 if (d.getAge() > collectionManager.maxByAge()){
                     collectionManager.addToCollection(d);
+                    collectionManager.sort();
+                    System.out.println("New element successfully added");
                     return true;
                 }
             }

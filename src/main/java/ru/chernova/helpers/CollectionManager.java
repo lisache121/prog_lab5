@@ -169,15 +169,15 @@ public class CollectionManager {
      * @return String with elements with age less than this age
      * @throws EmptyCollectionException if there is no elements in collection
      */
-    public String filterByAge(int age) throws EmptyCollectionException {
-        String filteredDragons = null;
+    public ArrayDeque<Dragon> filterByAge(int age) throws EmptyCollectionException {
         if (dragons.isEmpty()) throw new EmptyCollectionException();
+        ArrayDeque<Dragon> filteredArray = new ArrayDeque<>();
         for (Dragon dragon: dragons){
             if (dragon.getAge() < age){
-                filteredDragons += dragon.toConsole();
+                filteredArray.add(dragon);
             }
         }
-        return filteredDragons;
+        return filteredArray;
     }
 
     /**
@@ -185,11 +185,13 @@ public class CollectionManager {
      * @return ArrayList of sorted elements by age
      * @throws EmptyCollectionException if there is no elements in collection
      */
-    public ArrayList<Dragon> sort() throws EmptyCollectionException {
+    public ArrayDeque<Dragon> sort() throws EmptyCollectionException {
         if (dragons.isEmpty()) throw new EmptyCollectionException();
-        ArrayList<Dragon> list= new ArrayList<>(dragons);
+        ArrayList<Dragon> list = new ArrayList<>(dragons);
         list.sort(comparator);
-        return list;
+        dragons = new ArrayDeque<>();
+        dragons.addAll(list);
+        return dragons;
     }
 
     /**

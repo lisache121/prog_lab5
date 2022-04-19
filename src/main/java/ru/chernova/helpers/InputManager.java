@@ -31,12 +31,13 @@ public class InputManager {
     /**
      * method to read collection from file
      */
-    public void run(CollectionManager collectionManager, DragonMaker maker) throws EmptyFieldException, InvalidAgeInputException, WrongAmountOfElementsException, InvalidArgumentsOfCoordinatesException {
+    public void run(CollectionManager collectionManager, DragonMaker maker) throws  WrongAmountOfElementsException {
         try {
             File f = new File(filename);
             if(!f.isDirectory() && Files.isReadable(f.toPath())){
                 ArrayDeque<Dragon> d = parser.fromXmlToCollectionManager(parser.fromXmlToString(filename));
                 collectionManager.setCollection(d);
+                collectionManager.sort();
             }else{
                 System.out.println("There is no rights for reading file. Change rights and run program again!");
                 System.exit(0);
@@ -47,6 +48,8 @@ public class InputManager {
         } catch(NoSuchElementException e){
             System.out.println("You have entered the end of file symbol. Program will be stopped.");
             System.exit(0);
+        } catch (EmptyCollectionException e) {
+            System.out.println("Collection is empty");
         }
         Map<String, AbstractCommand> commands = new HashMap<>();
 

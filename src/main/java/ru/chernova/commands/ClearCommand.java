@@ -29,6 +29,7 @@ public class ClearCommand extends AbstractCommand{
             }
 
             collectionManager.clearCollection();
+            System.out.println("Collection is clear now");
             return true;
         } catch (WrongAmountOfElementsException e) {
             System.out.println("This command does not have arguments.");

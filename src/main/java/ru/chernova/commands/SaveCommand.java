@@ -40,7 +40,6 @@ public class SaveCommand extends AbstractCommand{
             File f = new File(filename);
             boolean flag = f.canWrite();
             if (!flag){
-                System.out.println("cant");
                 File newFile = new File(System.getProperty("user.dir") + File.separator + "NewXml.xml");
                 try
                 {
@@ -52,7 +51,7 @@ public class SaveCommand extends AbstractCommand{
                 }
                 catch(IOException ex){
 
-                    System.out.println(ex.getMessage());
+                    System.out.println("File already exists");
                 }
             } else{
                 parser.writeStringToFile(filename, dragons);

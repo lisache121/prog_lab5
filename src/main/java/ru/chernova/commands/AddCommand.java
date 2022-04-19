@@ -1,6 +1,7 @@
 package ru.chernova.commands;
 
 import ru.chernova.data.Dragon;
+import ru.chernova.exceptions.EmptyCollectionException;
 import ru.chernova.exceptions.InvalidArgumentsOfCoordinatesException;
 import ru.chernova.exceptions.WrongAmountOfElementsException;
 import ru.chernova.helpers.CollectionManager;
@@ -36,12 +37,15 @@ public class AddCommand extends AbstractCommand{
                     maker.makeCoordinates(),
                     new Date(), maker.makeAge(), maker.makeDescription(), maker.makeColor(), maker.makeType(), maker.makeHead());
             collectionManager.addToCollection(d);
+            collectionManager.sort();
             System.out.println("Element successfully added.");
             return true;
         } catch (WrongAmountOfElementsException e) {
             System.out.println("This command does not have arguments.");
         } catch (InvalidArgumentsOfCoordinatesException e){
             System.out.println("Invalid value of coordinates.");
+        } catch (EmptyCollectionException e) {
+            System.out.println("Collection is empty");
         }
         return true;
     }

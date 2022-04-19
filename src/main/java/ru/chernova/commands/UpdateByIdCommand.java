@@ -45,6 +45,7 @@ public class UpdateByIdCommand extends AbstractCommand {
                         collectionManager.addToCollection(new Dragon(id, maker.makeName(), maker.makeCoordinates(),
                                 new Date(), maker.makeAge(), maker.makeDescription(), maker.makeColor(), maker.makeType(), maker.makeHead()));
                         System.out.println("Dragon with id " + id + " successfully updated");
+                        collectionManager.sort();
                         return true;
                     } else {
                         System.out.println("Update failed.");

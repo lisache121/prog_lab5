@@ -30,6 +30,7 @@ public class RemoveHeadCommand extends AbstractCommand{
             Dragon d = collectionManager.getCollection().getFirst();
             System.out.println(d.toConsole());
             collectionManager.removeFromCollection(d);
+            collectionManager.sort();
             System.out.println("Element removed successfully.");
             return true;
         } catch (WrongAmountOfElementsException e) {

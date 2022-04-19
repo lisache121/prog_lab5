@@ -22,7 +22,7 @@ public class ExitCommand extends AbstractCommand{
                 throw new WrongAmountOfElementsException();
             }
             System.out.println("You have entered exit command. The program will be stopped.");
-            System.exit(0);
+            System.exit(1);
         } catch (WrongAmountOfElementsException e) {
             System.out.println("This command does not have arguments.");
         }

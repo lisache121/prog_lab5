@@ -8,9 +8,11 @@ import ru.chernova.helpers.InputManager;
  * Main method to run the program
  */
 public class Main {
-    public static void main(String[] args) throws WrongAmountOfElementsException, InvalidArgumentsOfCoordinatesException, InvalidAgeInputException, EmptyFieldException {
+    public static void main(String[] args) throws WrongAmountOfElementsException {
         DragonMaker maker = new DragonMaker();
         try{
+            final String filename = "Collection";
+            System.out.println(System.getenv().get(filename));
             String path = System.getenv().get("Collection");
             CollectionManager collectionManager = new CollectionManager();
             InputManager inputManager = new InputManager(path);

@@ -34,7 +34,7 @@ public class Parser {
     public Parser() {
     }
 
-    public ArrayDeque<Dragon> fromXmlToCollectionManager(String xml) throws IOException, EmptyFieldException, InvalidAgeInputException, InvalidArgumentsOfCoordinatesException {
+    public ArrayDeque<Dragon> fromXmlToCollectionManager(String xml) throws IOException {
         List<Dragon> res = new ArrayList<Dragon>() {};
         try{
             res =  xmlMapper.readValue(xml, new TypeReference<List<Dragon>>() {});
@@ -64,12 +64,12 @@ public class Parser {
                 dragonCheck.setDate(d.retDate());
                 ad.add(dragonCheck);
             } catch(EmptyFieldException e){
-                System.out.println("Name, coordinates and description fields must not empty. This dragon with id " + d.getId() + " will not be added to a collection.");
+                System.out.println("Name, coordinates and description must not empty. This dragon with id " + d.getId() + " will not be added to a collection.");
             } catch(InvalidAgeInputException e){
                 System.out.println("Age must be greater than 0. This dragon with id " + d.getId() + " will not be added to a collection.");
             } catch(InvalidArgumentsOfCoordinatesException e){
                 System.out.println("X coordinate must be greater than -417, y coordinate must be greater than -225. This dragon with id " + d.getId() + " will not be added to a collection.");
-            };
+            }
 
         }
 
@@ -108,8 +108,7 @@ public class Parser {
 
         String rootName = Dragon.class.getAnnotation(JsonRootName.class).value();
 
-        String xml = xmlMapper.writerWithDefaultPrettyPrinter().withRootName(rootName).writeValueAsString(d);
-        return xml;
+        return xmlMapper.writerWithDefaultPrettyPrinter().withRootName(rootName).writeValueAsString(d);
     }
     public void writeStringToFile(String filename, ArrayDeque<Dragon> dragons) throws IOException{
 

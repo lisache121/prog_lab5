@@ -25,7 +25,9 @@ public class ShowCommand extends AbstractCommand{
             if(this.getArguments().length > 1){
                 throw new WrongAmountOfElementsException();
             }
+            if (collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
             System.out.println("Elements in collection: ");
+            collectionManager.sort();
             collectionManager.showCollection();
 
             return true;

@@ -5,6 +5,7 @@ import ru.chernova.exceptions.EmptyCollectionException;
 import ru.chernova.exceptions.WrongAmountOfElementsException;
 import ru.chernova.helpers.CollectionManager;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ public class PrintAscendingCommand extends AbstractCommand{
         try{
             if (this.getArguments().length > 1) throw new WrongAmountOfElementsException();
             if (collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
-            ArrayList<Dragon> dragons = collectionManager.sort();
+            ArrayDeque<Dragon> dragons = collectionManager.sort();
             System.out.println("Elements in collection in ascending order:");
             for (Dragon d: dragons){
                 System.out.println(d.toConsole());

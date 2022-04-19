@@ -1,9 +1,13 @@
 package ru.chernova.commands;
 
 
+import ru.chernova.data.Dragon;
 import ru.chernova.exceptions.EmptyCollectionException;
 import ru.chernova.exceptions.WrongAmountOfElementsException;
 import ru.chernova.helpers.CollectionManager;
+
+import java.lang.reflect.Array;
+import java.util.ArrayDeque;
 
 
 /**
@@ -29,9 +33,13 @@ public class FilterLessThanAgeCommand extends AbstractCommand{
             if (args.length != 2) throw new WrongAmountOfElementsException();
             if (collectionManager.getCollection().size()==0) throw new EmptyCollectionException();
             this.age = Integer.parseInt(args[1]);
-            if (collectionManager.filterByAge(age) != null){
+            if (!collectionManager.filterByAge(age).isEmpty()){
                 System.out.println("Collection filtered by age: ");
-                System.out.println(collectionManager.filterByAge(age));
+                collectionManager.sort();
+                ArrayDeque<Dragon> dFil = collectionManager.filterByAge(age);
+                for (Dragon d: dFil){
+                    System.out.println(d.toConsole());
+                }
             }
             else{
                 System.out.println("There are no dragons in collection younger than " + age);

@@ -35,6 +35,7 @@ public class RemoveByIdCommand extends AbstractCommand{
                     Dragon d = collectionManager.getById(id);
                     if (d == null) throw new ElementNotFoundException();
                     collectionManager.removeFromCollection(d);
+                    collectionManager.sort();
                     System.out.println("Element with id " + id + " was successfully removed.");
                 } catch (NumberFormatException e) {
                     System.out.println("ID value must be long.");
